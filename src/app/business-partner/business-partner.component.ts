@@ -1,6 +1,8 @@
 import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {BusinessPartner} from "./models/BusinessPartner";
 import {NgForm} from "@angular/forms";
+import {readFormErrorKeys} from "../shared/form/read-form-error-keys";
+
 
 @Component({
   selector: 'business-partner',
@@ -17,7 +19,6 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
 
   constructor() {
     this.bp = this.createBp();
-
   }
 
   public ngOnInit() {
@@ -26,26 +27,7 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
 
   public ngAfterViewChecked() {
     this.bpNgForm.valueChanges.subscribe(() => {
-      this.readFormErrors();
-    });
-  }
-
-  public readFormErrors() {
-    // reset
-    this.formErrorKeys = new Array();
-
-    if (!this.bpNgForm) {
-      return;
-    }
-    const form = this.bpNgForm.form;
-
-    this.formElementKeys.forEach((formElementKey: string) => {
-      let formControl = form.get(formElementKey); // TODO: check why not both elements seemes to be part of form group
-      if (formControl) {
-        for (const formErrorKey in formControl.errors) {
-          this.formErrorKeys.push(formElementKey + "." + formErrorKey);
-        }
-      }
+      this.formErrorKeys = readFormErrorKeys(this.bpNgForm, this.formElementKeys);
     });
   }
 
