@@ -22,7 +22,7 @@
 
   <div [hidden]="bpNgForm.form.valid">
     <h3>please correct form errors</h3>
-    <ul *ngFor="let formErrorKey of formErrorKeys">
+    <ul *ngFor="let formErrorKey of bpForm.formErrorKeys">
       <li>{{formErrorKey}}</li>
     </ul>
   </div>

@@ -1,7 +1,7 @@
 import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {BusinessPartner} from "./models/BusinessPartner";
 import {NgForm} from "@angular/forms";
-import {readFormErrorKeys} from "../shared/form/read-form-error-keys";
+import {BusinessPartnerForm} from "./business-partner.form";
 
 
 @Component({
@@ -11,10 +11,8 @@ import {readFormErrorKeys} from "../shared/form/read-form-error-keys";
 export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   @ViewChild('bpNgForm') bpNgForm: NgForm;
 
-  public formErrorKeys: Array<string> = new Array();
-  public formElementKeys: Array<string> = ['bpName', 'bpAddress'];
-
   public bp: BusinessPartner = null;
+  public bpForm: BusinessPartnerForm = null;
 
 
   constructor() {
@@ -22,13 +20,11 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   }
 
   public ngOnInit() {
-
+    this.bpForm = new BusinessPartnerForm();
   }
 
   public ngAfterViewChecked() {
-    this.bpNgForm.valueChanges.subscribe(() => {
-      this.formErrorKeys = readFormErrorKeys(this.bpNgForm, this.formElementKeys);
-    });
+    this.bpForm.readFormErrorKeys(this.bpNgForm);
   }
 
   private createBp(): BusinessPartner {
