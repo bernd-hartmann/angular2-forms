@@ -10,10 +10,9 @@ import {BusinessPartnerForm} from "./business-partner.form";
 })
 export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   @ViewChild('bpNgForm') bpNgForm: NgForm;
-
-  public bp: BusinessPartner = null;
   public bpForm: BusinessPartnerForm = new BusinessPartnerForm();
 
+  public bp: BusinessPartner = null;
 
   constructor() {
     this.bp = this.createBp();
@@ -24,7 +23,7 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   }
 
   public ngAfterViewChecked() {
-    this.bpForm.readFormErrorKeys(this.bpNgForm);
+    this.bpForm.updateForm(this.bpNgForm);
   }
 
   private createBp(): BusinessPartner {
@@ -37,4 +36,6 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
       address: "Holzweg3"
     };
   }
+
+
 }
