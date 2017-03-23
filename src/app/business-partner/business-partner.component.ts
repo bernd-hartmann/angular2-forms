@@ -12,7 +12,7 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   @ViewChild('bpNgForm') bpNgForm: NgForm;
 
   public bp: BusinessPartner = null;
-  public bpForm: BusinessPartnerForm = null;
+  public bpForm: BusinessPartnerForm = new BusinessPartnerForm();
 
 
   constructor() {
@@ -20,7 +20,7 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   }
 
   public ngOnInit() {
-    this.bpForm = new BusinessPartnerForm();
+
   }
 
   public ngAfterViewChecked() {
