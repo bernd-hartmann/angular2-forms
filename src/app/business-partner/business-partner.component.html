@@ -1,13 +1,19 @@
 <h2>business-partner</h2>
 
-<div id="businessPartnerForm">
+<div *ngIf="bp" id="businessPartnerForm">
   <div>
     <label id="bpNameLabel">Name: </label>
-    <input id="bpNameInput" type="text"/>
+    <input id="bpNameInput" [(ngModel)]="bp.name" name="bpName" #ngModelDirectiveBpName="ngModel" type="text"
+           required minlength="4" maxlength="24"
+    />
   </div>
 
   <div>
     <label id="bpAddressLabel">Address: </label>
-    <input id="bpAddressInput" type="text"/>
+    <input id="bpAddressInput" [(ngModel)]="bp.address" type="text"/>
+  </div>
+
+  <div [hidden]="!ngModelDirectiveBpName.errors">
+    <div>errors: {{ngModelDirectiveBpName.errors|json}}</div>
   </div>
 </div>
