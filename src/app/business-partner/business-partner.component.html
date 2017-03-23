@@ -1,19 +1,35 @@
 <h2>business-partner</h2>
 
 <div *ngIf="bp" id="businessPartnerForm">
+  <form #bpNgForm="ngForm">
   <div>
-    <label id="bpNameLabel">Name: </label>
-    <input id="bpNameInput" [(ngModel)]="bp.name" name="bpName" #ngModelDirectiveBpName="ngModel" type="text"
+    <label id="bpNameLabel">name: </label>
+    <input id="bpNameInput" [(ngModel)]="bp.name" name="bpName" #bpNameNgModel="ngModel" type="text"
            required minlength="4" maxlength="24"
     />
   </div>
 
   <div>
-    <label id="bpAddressLabel">Address: </label>
-    <input id="bpAddressInput" [(ngModel)]="bp.address" type="text"/>
+    <label id="bpAddressLabel">address: </label>
+    <input id="bpAddressInput" [(ngModel)]="bp.address" name="bpAddress" type="text"/>
   </div>
 
-  <div [hidden]="!ngModelDirectiveBpName.errors">
-    <div>errors: {{ngModelDirectiveBpName.errors|json}}</div>
+  </form>
+
+  <div [hidden]="bpNgForm.form.valid">
+    <h3>please correct form errors</h3>
+    <ul *ngFor="let formErrorKey of formErrorKeys">
+      <li>{{formErrorKey}}</li>
+    </ul>
   </div>
+
+  <hr/>
+  <div>
+    <div>bpNameNgModel errors: {{bpNameNgModel.errors|json}}</div>
+  </div>
+  <div>
+    <div>bpNgForm.form {{bpNgForm.form.valid |json}}</div>
+  </div>
+
+
 </div>

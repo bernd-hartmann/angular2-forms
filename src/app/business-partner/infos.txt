@@ -1,0 +1,1 @@
+- AbstractControl hat wichtige properties
