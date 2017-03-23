@@ -10,7 +10,7 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
   @ViewChild('bpNgForm') bpNgForm: NgForm;
 
   public formErrorKeys: Array<string> = new Array();
-  public formElementKeys: Array<string> = ['bpName'];
+  public formElementKeys: Array<string> = ['bpName', 'bpAddress'];
 
   public bp: BusinessPartner = null;
 
@@ -40,9 +40,11 @@ export class BusinessPartnerComponent implements OnInit, AfterViewChecked {
     const form = this.bpNgForm.form;
 
     this.formElementKeys.forEach((formElementKey: string) => {
-      let formControl = form.get(formElementKey);
-      for (const formErrorKey in formControl.errors) {
-        this.formErrorKeys.push(formElementKey + "." + formErrorKey);
+      let formControl = form.get(formElementKey); // TODO: check why not both elements seemes to be part of form group
+      if (formControl) {
+        for (const formErrorKey in formControl.errors) {
+          this.formErrorKeys.push(formElementKey + "." + formErrorKey);
+        }
       }
     });
   }

@@ -2,17 +2,21 @@
 
 <div *ngIf="bp" id="businessPartnerForm">
   <form #bpNgForm="ngForm">
-  <div>
-    <label id="bpNameLabel">name: </label>
-    <input id="bpNameInput" [(ngModel)]="bp.name" name="bpName" #bpNameNgModel="ngModel" type="text"
-           required minlength="4" maxlength="24"
-    />
-  </div>
+    <div>
+      <div>
+        <label id="bpNameLabel">name: </label>
+        <input id="bpNameInput" [(ngModel)]="bp.name" name="bpName" #bpNameNgModel="ngModel" type="text"
+               required minlength="4" maxlength="24"
+        />
+      </div>
 
-  <div>
-    <label id="bpAddressLabel">address: </label>
-    <input id="bpAddressInput" [(ngModel)]="bp.address" name="bpAddress" type="text"/>
-  </div>
+      <div>
+        <label id="bpAddressLabel">address: </label>
+        <input id="bpAddressInput" [(ngModel)]="bp.address" name="bpAddress" #bpAddressNgModel="ngModel" type="text"
+               required/>
+      </div>
+    </div>
+
 
   </form>
 
@@ -26,6 +30,9 @@
   <hr/>
   <div>
     <div>bpNameNgModel errors: {{bpNameNgModel.errors|json}}</div>
+  </div>
+  <div>
+    <div>bpAddressNgModel errors: {{bpAddressNgModel.errors|json}}</div>
   </div>
   <div>
     <div>bpNgForm.form {{bpNgForm.form.valid |json}}</div>
