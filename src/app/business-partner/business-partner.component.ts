@@ -10,7 +10,20 @@ export class BusinessPartnerComponent {
 
 
   constructor() {
+    console.log('constructor businesspartner');
     this.bp = this.createBp();
+    //this.overwriteLocal();
+
+  }
+
+  private overwriteLocal() {
+    //let methodSayHello = this.sayHello;
+
+    this.sayHello = () => {
+      //methodSayHello();
+
+      console.log('servus');
+    };
   }
 
   private createBp(): BusinessPartner {
@@ -22,5 +35,13 @@ export class BusinessPartnerComponent {
       name: "Huber",
       address: "Holzweg3"
     };
+  }
+
+  private sayHello() {
+    console.log('hello');
+  }
+
+  public ngOnInit() {
+    this.sayHello();
   }
 }
